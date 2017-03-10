@@ -26,8 +26,13 @@
                     <!--Put animal buttons here-->
                 </div>
                 <div>
-                    <input id="newAnimal"></input>
-                    <button id="addAnimal">Add Animal</button>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="enterAnimal">Animal</label>
+                            <input type="text" class="form-control" id="newAnimal" placeholder="Enter Animal Name">
+                        </div>
+                        <button id="addAnimal" type="submit" class="btn btn-primary">Add Animal</button>
+                    </form>                     
                 </div>    
                 <div id="images">
                     <!--Put images here-->

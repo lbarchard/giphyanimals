@@ -6,7 +6,7 @@ var giphyCall = new Object();
 giphyCall.APIKey = "dc6zaTOxFJmzC";
 giphyCall.searchTerm = "Cat";
 giphyCall.searchLimit = 10;
-giphyCall.rating = "pg-13";
+giphyCall.rating = "r";
 
 var animals = ["cat", "dog", "frog", "elephant", "lion", "bear"];
 
@@ -26,6 +26,7 @@ function getImages () {
         method: 'GET'
         }).done(function(response) {
             console.log(response)
+            $("#images").empty();
             for (i=0; i<response.data.length; i++) {
                 console.log("image" + i);
                 console.log(response.data[i].images.downsized.url);
@@ -36,6 +37,7 @@ function getImages () {
                 animalImage.attr("height", 200)
                 $("#images").prepend(animalImage);
             }
+            
         //   var animalDiv = $("<div class='movie'>");
 
         //   // Storing the rating data
@@ -85,6 +87,9 @@ function buildButtons() {
     for (i=0; i< animals.length; i++) {
           var animalButton = $("<button>");
           animalButton.addClass("animal");
+          animalButton.addClass("btn");
+          animalButton.addClass("btn-default");
+          animalButton.attr("type", "button");
           animalButton.attr("data-name", animals[i]);
           animalButton.text(animals[i]);
           $("#buttons").append(animalButton);
@@ -94,22 +99,29 @@ function buildButtons() {
 $("#addAnimal").on("click", function(anotherAnimal) {
     event.preventDefault();
     var animal = $("#newAnimal").val().trim();
+    if (animal.length != 0) {
     animals.push(animal);
     buildButtons();
     $("#newAnimal").val("");
+    }
 });
 
 
 // -----------
-$(document).on("click", ".animal", setSearchTerm);
+// function setSearchTerm() {
+// };
 
-function setSearchTerm() {
+$(".animal").on("click", function(setSearchTerm){
+    console.log("got here to the click");
     var animal = $(this).attr("data-name");
     giphyCall.searchTerm = animal;
     setGiphyCall();
     getImages();
     console.log("Got here")
-};
+
+});
+
+
 
 // -------------
 

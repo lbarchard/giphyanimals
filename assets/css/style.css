@@ -1,3 +1,12 @@
 body {
 	/*background-image: url("../images/background.jpg");*/
 }
+
+button {
+    margin-left: 20px;
+    min-width: 100px;
+}
+
+.form-inline {
+    margin-top: 20px;
+}
