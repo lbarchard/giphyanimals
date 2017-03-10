@@ -12,7 +12,7 @@ $(document).ready(function() {
     var imageList = [];
     //Functions**********************************************************
     function setGiphyCall() {
-        giphyCall.URL = "http://api.giphy.com/v1/gifs/search?q=" + giphyCall.searchTerm + "&limit=" + giphyCall.searchLimit + 
+        giphyCall.URL = "https://api.giphy.com/v1/gifs/search?q=" + giphyCall.searchTerm + "&limit=" + giphyCall.searchLimit + 
                         "&rating=" + giphyCall.rating + "&api_key=" + giphyCall.APIKey;
     };
 
