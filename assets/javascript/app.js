@@ -1,45 +1,31 @@
 $(document).ready(function() {
 
-var APIKey = "dc6zaTOxFJmzC"
-var searchTerm = "Cat"
+//Initial variables
+var giphyCall = new Object();
 
-giphyCall = {
-    APIKey: "dc6zaTOxFJmzC",
-    searchTerm: "Cat",
-    searchLimit: 10,
-    rating: "pg-13",
-    URL: function() {
-        var thisURL = "http://api.giphy.com/v1/gifs/search?q=cat&limit=10&rating=pg-13&api_key=dc6zaTOxFJmzC";
-        return thisURL;
-}}
+giphyCall.APIKey = "dc6zaTOxFJmzC";
+giphyCall.searchTerm = "Cat";
+giphyCall.searchLimit = 10;
+giphyCall.rating = "pg-13";
 
-// example search
-// http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC   
-// https://github.com/Giphy/GiphyAPI#search-endpoint
+var animalList = [cat, dog, frog, elephant, lion, bear]
 
-// q
-// limit
-// rating
-
-// When the user clicks on a button, the page should grab 10 static, non-animated gif images from 
-// the GIPHY API and place them on the page.
-
-// When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks 
-// the gif again, it should stop playing.
-
-// Under every gif, display its rating (PG, G, so on).
-
-
-
-
-
+function setGiphyCall() {
+    giphyCall.URL = "http://api.giphy.com/v1/gifs/search?q=" + giphyCall.searchTerm + "&limit=" + giphyCall.searchLimit + 
+                    "&rating=" + giphyCall.rating + "&api_key=" + giphyCall.APIKey;
+}
+    
+setGiphyCall();
 
 $.ajax({
-      url: giphyCall.giphyCallURL,
-      method: 'GET'
+    
+    url: giphyCall.URL,
+    method: 'GET'
     }).done(function(response) {
       console.log(response);
     });
 
+buildButtons();
+    for (i=0, )
 
 });
