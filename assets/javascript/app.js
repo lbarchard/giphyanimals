@@ -25,8 +25,59 @@ function getImages () {
         url: giphyCall.URL,
         method: 'GET'
         }).done(function(response) {
-        console.log(response);
-        });
+            console.log(response)
+            for (i=0; i<response.data.length; i++) {
+                console.log("image" + i);
+                console.log(response.data[i].images.downsized.url);
+                console.log(response.data[i].images.downsized_still.url);
+                var animalImage = $("<img>");
+                animalImage.addClass("animalImage");
+                animalImage.attr("src",response.data[i].images.downsized_still.url);
+                animalImage.attr("height", 200)
+                $("#images").prepend(animalImage);
+            }
+        //   var animalDiv = $("<div class='movie'>");
+
+        //   // Storing the rating data
+        //   var rating = response.Rated;
+
+        //   // Creating an element to have the rating displayed
+        //   var pOne = $("<p>").text("Rating: " + rating);
+
+        //   // Displaying the rating
+        //   movieDiv.append(pOne);
+
+        //   // Storing the release year
+        //   var released = response.Released;
+
+        //   // Creating an element to hold the release year
+        //   var pTwo = $("<p>").text("Released: " + released);
+
+        //   // Displaying the release year
+        //   movieDiv.append(pTwo);
+
+        //   // Storing the plot
+        //   var plot = response.Plot;
+
+        //   // Creating an element to hold the plot
+        //   var pThree = $("<p>").text("Plot: " + plot);
+
+        //   // Appending the plot
+        //   movieDiv.append(pThree);
+
+        //   // Retrieving the URL for the image
+        //   var imgURL = response.Poster;
+
+        //   // Creating an element to hold the image
+        //   var image = $("<img>").attr("src", imgURL);
+
+        //   // Appending the image
+        //   movieDiv.append(image);
+
+        //   // Putting the entire movie above the previous movies
+        //   $("#movies-view").prepend(movieDiv);
+    });
+    
 }
 
 function buildButtons() {
@@ -50,58 +101,15 @@ $("#addAnimal").on("click", function(anotherAnimal) {
 
 
 // -----------
-$(document).on("click", ".animal", displayGiphys);
-function displayGiphys() {
+$(document).on("click", ".animal", setSearchTerm);
 
-        var animal = $(this).attr("data-name");
-        giphyCall.searchTerm = animal;
-        setGiphyCall();
-        getImages();
-        console.log("Got here")
-          
-          
-          // Creating a div to hold the movie
-          var movieDiv = $("<div class='movie'>");
-
-          // Storing the rating data
-          var rating = response.Rated;
-
-          // Creating an element to have the rating displayed
-          var pOne = $("<p>").text("Rating: " + rating);
-
-          // Displaying the rating
-          movieDiv.append(pOne);
-
-          // Storing the release year
-          var released = response.Released;
-
-          // Creating an element to hold the release year
-          var pTwo = $("<p>").text("Released: " + released);
-
-          // Displaying the release year
-          movieDiv.append(pTwo);
-
-          // Storing the plot
-          var plot = response.Plot;
-
-          // Creating an element to hold the plot
-          var pThree = $("<p>").text("Plot: " + plot);
-
-          // Appending the plot
-          movieDiv.append(pThree);
-
-          // Retrieving the URL for the image
-          var imgURL = response.Poster;
-
-          // Creating an element to hold the image
-          var image = $("<img>").attr("src", imgURL);
-
-          // Appending the image
-          movieDiv.append(image);
-
-          // Putting the entire movie above the previous movies
-          $("#movies-view").prepend(movieDiv);
-        };
+function setSearchTerm() {
+    var animal = $(this).attr("data-name");
+    giphyCall.searchTerm = animal;
+    setGiphyCall();
+    getImages();
+    console.log("Got here")
+};
 
 // -------------
 
