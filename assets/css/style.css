@@ -1,5 +1,6 @@
+
 body {
-	/*background-image: url("../images/background.jpg");*/
+	margin: 20px;
 }
 
 button {
@@ -10,4 +11,20 @@ button {
 .form-inline {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.imageRating {
+    text-align: center;
+    font-size: 20px;
+    background-color: grey;
+    color: white;
+}
+
+.animalImage {
+    width: 100%;
+    
+}
+
+.imageDiv {
+    vertical-align: bottom;
 }

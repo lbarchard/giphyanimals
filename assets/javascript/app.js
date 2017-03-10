@@ -43,18 +43,19 @@ $(document).ready(function() {
                     //Track ID's for each Image DIV
                     var imageDivID = "imageDiv" + i;
                     var imageID = "imageID" + i;
-
                     //Build the image Div
                     var imageDiv = $("<div>");
                     imageDiv.attr("id", imageDivID);
+                    imageDiv.addClass("col-xs-6")
+                    imageDiv.addClass("imageDiv")
                     $("#images").append(imageDiv);
                     
                     //Build the image tag
                     var animalImage = $("<img>");
                     animalImage.addClass("animalImage");
                     animalImage.attr("id", imageID);
-                    animalImage.attr("src",response.data[i].images.downsized_still.url);
-                    animalImage.attr("height", 200);
+                    animalImage.attr("src",response.data[i].images.original_still.url);
+                    // animalImage.attr("height", 200);
                     animalImage.attr("value", i)
                     imageDivID = "#" + imageDivID
                     $(imageDivID).append(animalImage);
@@ -62,12 +63,13 @@ $(document).ready(function() {
                     //Build the rating tag
                     var imageRating = $("<p>");
                     imageRating.text(response.data[i].rating)
+                    imageRating.addClass("imageRating");
                     $(imageDivID).append(imageRating);
 
                     //Build the images Object
                     imageList.push({
-                        still: response.data[i].images.downsized_still.url,
-                        animated: response.data[i].images.downsized.url
+                        still: response.data[i].images.original_still.url,
+                        animated: response.data[i].images.original.url
                     });
                 }
                 console.log(imageList);
