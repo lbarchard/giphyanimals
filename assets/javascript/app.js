@@ -26,6 +26,8 @@ $.ajax({
     });
 
 buildButtons();
-    for (i=0, )
+    for (i=0; i< animalList.length; i++) {
+        
+    }
 
 });
