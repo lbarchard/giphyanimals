@@ -46,7 +46,7 @@ $(document).ready(function() {
                     //Build the image Div
                     var imageDiv = $("<div>");
                     imageDiv.attr("id", imageDivID);
-                    imageDiv.addClass("col-xs-6")
+                    // imageDiv.addClass("col-xs-6")
                     imageDiv.addClass("imageDiv")
                     $("#images").append(imageDiv);
                     
@@ -55,7 +55,7 @@ $(document).ready(function() {
                     animalImage.addClass("animalImage");
                     animalImage.attr("id", imageID);
                     animalImage.attr("src",response.data[i].images.original_still.url);
-                    // animalImage.attr("height", 200);
+                    animalImage.attr("height", 200);
                     animalImage.attr("value", i)
                     imageDivID = "#" + imageDivID
                     $(imageDivID).append(animalImage);

@@ -26,5 +26,23 @@ button {
 }
 
 .imageDiv {
-    vertical-align: bottom;
+    width: 23%;
+    float: left;
+    margin: 1%;
 }
+
+@media only screen and (max-width:900px) {
+    .imageDiv {
+        width: 30%;
+    }
+
+@media only screen and (max-width: 750px) {
+    .imageDiv {
+        width: 48%;
+    }
+
+@media only screen and (max-width: 480px) {
+    .imageDiv {
+        width: 95%;
+    }
+
