@@ -9,9 +9,7 @@ $(document).ready(function() {
     giphyCall.rating = "r";
 
     var animals = ["cat", "dog", "frog", "elephant", "lion", "bear"];
-    var images = {
-        imageList: []
-    };
+    var imageList = [];
     //Functions**********************************************************
     function setGiphyCall() {
         giphyCall.URL = "http://api.giphy.com/v1/gifs/search?q=" + giphyCall.searchTerm + "&limit=" + giphyCall.searchLimit + 
@@ -33,12 +31,14 @@ $(document).ready(function() {
     };
 
     function getImages () {
+        
         $.ajax({            
             url: giphyCall.URL,
             method: 'GET'
             }).done(function(response) {
                 console.log(response)
                 $("#images").empty();
+                imageList = [];        
                 for (i=0; i<response.data.length; i++) {
                     //Track ID's for each Image DIV
                     var imageDivID = "imageDiv" + i;
@@ -65,15 +65,12 @@ $(document).ready(function() {
                     $(imageDivID).append(imageRating);
 
                     //Build the images Object
-                    //STUFF GOES HERE ACTIVE WORKING ZONE!!!
-                    images.imageList.push = {
+                    imageList.push({
                         still: response.data[i].images.downsized_still.url,
                         animated: response.data[i].images.downsized.url
-                    }
-                    // images.id[i].still = response.data[i].images.downsized_still.url
-                    // images.id[i].animated = response.data[i].images.downsized.url
+                    });
                 }
-                console.log(images);
+                console.log(imageList);
         });
     };
 
@@ -97,7 +94,12 @@ $(document).ready(function() {
     function setImageType() {
         var i = ($(this).attr("value"))
         var imageID = "#imageID" + i;
-        $(imageID).attr("src",response.data[i].images.downsized.url);
+        if ($(imageID).attr("src") === imageList[i].still) {
+            $(imageID).attr("src",imageList[i].animated);
+        }
+        else {
+            $(imageID).attr("src",imageList[i].still);
+        }
     }
 
     //Event listeners***************************************************************
@@ -106,8 +108,6 @@ $(document).ready(function() {
     $("#addAnimal").on("click", addAnimal);
 
     $(document).on("click", ".animalImage", setImageType);
-
-
 
     //Startup routine***************************************************************
     buildButtons ();
